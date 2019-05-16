@@ -9,9 +9,19 @@
         <script src="/bower_components/angular/angular.js"></script>
         <script src="/bower_components/angular-route/angular-route.js"></script>
         <script src="/js/controllers.js"></script>
+             <script>
+        var map;
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: -34.397, lng: 150.644},
+          zoom: 8
+
     </head>
 
     <body>
+    <div style="height:50%; width:100%;">
+        	<div id="map" class="ng-scope"></div>
+</div> 
         <div float="left">
             <% include includes/mainbody %>
         </div>
@@ -22,5 +32,5 @@
             angular.bootstrap(document, ['ConsoleModule']);
         });
     </script>
-
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAAWrixrbeXv7FZrCcac6GhBLO7PB6NADs &callback=initMap"></script>
 </html>
