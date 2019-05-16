@@ -25,6 +25,7 @@ ConsoleModule.controller('wcontroller', ['$scope', '$http', '$routeParams', '$ti
     var city = [];
     var latitude = [];
     var longitude = [];
+    var marker = [];
     
     
 //addMarker(markerlatlng, map);
@@ -74,6 +75,7 @@ ConsoleModule.controller('wcontroller', ['$scope', '$http', '$routeParams', '$ti
                 for (i = 0; i < city.length; i++){
     	var point = {lat: latitude[i], lng: longitude[i]};
        addMarker(point, map);
+       
        }
             });
         } 
