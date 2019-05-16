@@ -17,7 +17,7 @@ function addMarker(location,map){
 	map:map
 	});
 
-
+markerArray.push(marker);
 }
 ConsoleModule.controller('wcontroller', ['$scope', '$http', '$routeParams', '$timeout', '$sce',
     function($scope, $http, $routeParams, $timeout, $sce) {
@@ -59,7 +59,8 @@ ConsoleModule.controller('wcontroller', ['$scope', '$http', '$routeParams', '$ti
                     latitude[0] = response.data.coord.lat;
                     longitude[0] = response.data.coord.lon; 
                     point = {lat:latitude[0], lon:longitude[0]};
-                   markerArray[0].addMarker(point,map);
+                    addMarker(point,map);
+                  
                     
                 } else if(which === 2) {
                 	//markerArray[1].setMap(null);
@@ -69,7 +70,7 @@ ConsoleModule.controller('wcontroller', ['$scope', '$http', '$routeParams', '$ti
                     latitude[1] = response.data.coord.lat;
                     longitude[1] = response.data.coord.lon; 
                     point = {lat:latitude[1], lon:longitude[1]};
-                   markerArray[1].addMarker(point,map);
+                   addMarker(point,map);
                   
                 } else if(which === 3) {
                 	//markerArray[2].setMap(null);
@@ -79,7 +80,7 @@ ConsoleModule.controller('wcontroller', ['$scope', '$http', '$routeParams', '$ti
                     latitude[2] = response.data.coord.lat;
                     longitude[2] = response.data.coord.lon; 
                     point = {lat:latitude[2], lon:longitude[2]};
-                   markerArray[2].addMarker(point,map);
+                  addMarker(point,map);
                     
                 } else if(which === 4) {
                // markerArray[3].setMap(null);
@@ -89,8 +90,8 @@ ConsoleModule.controller('wcontroller', ['$scope', '$http', '$routeParams', '$ti
                     latitude[3] = response.data.coord.lat;
                     longitude[3] = response.data.coord.lon;
                     point = {lat:latitude[3], lon:longitude[3]};
-                   markerArray[3].addMarker(point,map);
                    
+                    addMarker(point,map);
                 }        
             });       
     }; 
