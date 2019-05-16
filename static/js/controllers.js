@@ -1,4 +1,4 @@
-var markerlatlng = {lat: -25.363, lng: 131.044};
+//var markerlatlng = {lat: -25.363, lng: 131.044};
 var ConsoleModule = angular.module('ConsoleModule', ['ngRoute']);
 
 ConsoleModule.config(['$routeProvider', '$locationProvider','$sceDelegateProvider', '$httpProvider',
@@ -22,9 +22,12 @@ ConsoleModule.controller('wcontroller', ['$scope', '$http', '$routeParams', '$ti
     $scope.somemessage = "Some weather";
     $scope.zip1City = "";
     $scope.zip1Weather = "";
+    var city = [];
+    var latitude = [];
+    var longitude = [];
     
     
-addMarker(markerlatlng, map);
+//addMarker(markerlatlng, map);
     $scope.zip = function(which) {
 
         var data = "";
@@ -46,16 +49,32 @@ addMarker(markerlatlng, map);
                 if(which === 1) {
                     $scope.zip1City = response.data.city;
                     $scope.zip1Weather = response.data.weather;
+                    city[0] = response.data.city;
+                    latitude[0] = response.data.lat;
+                    longitude[0] = response.data.lon;
                 } else if(which === 2) {
                     $scope.zip2City = response.data.city;
                     $scope.zip2Weather = response.data.weather;
+                      city[1] = response.data.city;
+                    latitude[1] = response.data.lat;
+                    longitude[1] = response.data.lon;
                 } else if(which === 3) {
                     $scope.zip3City = response.data.city;
                     $scope.zip3Weather = response.data.weather;
+                      city[2] = response.data.city;
+                    latitude[2] = response.data.lat;
+                    longitude[2] = response.data.lon;
                 } else if(which === 4) {
                     $scope.zip4City = response.data.city;
                     $scope.zip4Weather = response.data.weather;
+                      city[3] = response.data.city;
+                    latitude[3] = response.data.lat;
+                    longitude[3] = response.data.lon;
                 } 
+                for (i = 0; i < city.length; i++){
+    	var point = {lat: latitude[i], lng: longitude[i]};
+       addMarker(point, map);
+       }
             });
         } 
     };
