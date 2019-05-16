@@ -16,7 +16,7 @@ ConsoleModule.config(['$routeProvider', '$locationProvider','$sceDelegateProvide
 }]);
 function putPinsOnMap(cities,lat,long) {
 	setMapOnAll(null);
-	markerArray[];
+	markerArray=[];
     for (i = 0; i < city.length; i++){
     	var point = {lat: lat[i], lng: long[i]};
         addPin(point, map);       
