@@ -10,31 +10,47 @@
         <script src="/bower_components/angular-route/angular-route.js"></script>
         <script src="/js/controllers.js"></script>
         <script>
-     var map;
-     function initMap() {
+      var map;
+      function initMap() {
+      	locationNz = {lat: -41.838875, lng: 171.7799};
         map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: -34.397, lng: 150.644},
-          zoom: 8
-           });
+          center: locationNz,
+          zoom: 5,
+          gestureHandling: 'none',
+          zoomControl: false
+     	});
+        
+          google.maps.event.addListener(map, 'click', function(event) {
+    //addMarker(event.latLng, map);
+  });
+       
       }
+    
+    </script>
+
 
     </head>
 
     <body>
-    <div style="height:50%; width:100%;">
+         <div style="height:50%; width:100%;">
         	<div id="map" class="ng-scope"></div>
-</div> 
+  	 	 </div> 
         <div float="left">
             <% include includes/mainbody %>
         </div>
+    </body>
 
     <script>
          angular.element(document).ready(function() {
             angular.bootstrap(document, ['ConsoleModule']);
         });
     </script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAAWrixrbeXv7FZrCcac6GhBLO7PB6NADs &callback=initMap"></script>
-   async defer></script>
-  </body>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAWiaUfLNP1lTw2XJ7Z2fxCA8GtrhvyExM&callback=initMap"></script>
+
+
+
+
 
 </html>
+
+
