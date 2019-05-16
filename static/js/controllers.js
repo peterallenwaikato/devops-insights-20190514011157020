@@ -84,7 +84,7 @@ ConsoleModule.controller('wcontroller', ['$scope', '$http', '$routeParams', '$ti
        addMarker(point, map);
        
        }
-            })
+            });
         } 
     };
     
