@@ -1,4 +1,4 @@
-
+var markerlatlng = {lat: -25.363, lng: 131.044};
 var ConsoleModule = angular.module('ConsoleModule', ['ngRoute']);
 
 ConsoleModule.config(['$routeProvider', '$locationProvider','$sceDelegateProvider', '$httpProvider',
@@ -10,13 +10,21 @@ ConsoleModule.config(['$routeProvider', '$locationProvider','$sceDelegateProvide
     });
 }]);
 
+function addMarker(location,map){
+	
+	var marker = new google.maps.Marker({position:location, map:map
+	});
+}
+
 ConsoleModule.controller('wcontroller', ['$scope', '$http', '$routeParams', '$timeout', '$sce',
     function($scope, $http, $routeParams, $timeout, $sce) {
 
     $scope.somemessage = "Some weather";
     $scope.zip1City = "";
     $scope.zip1Weather = "";
-
+    
+    
+addMarker(markerlatlng, map);
     $scope.zip = function(which) {
 
         var data = "";
