@@ -17,8 +17,19 @@ function addMarker(location,map){
 	map:map
 	});
 
-markerArray.push(marker);
+//markerArray.push(marker);
 }
+    function clearMarkers() {
+        markerArray.setMapOnAll(null);
+      }
+        function setMapOnAll(map) {
+        for (var i = 0; i < markers.length; i++) {
+          markerArray[i].setMap(map);
+        }
+      }
+
+
+
 ConsoleModule.controller('wcontroller', ['$scope', '$http', '$routeParams', '$timeout', '$sce',
     function($scope, $http, $routeParams, $timeout, $sce) {
 
@@ -52,6 +63,8 @@ ConsoleModule.controller('wcontroller', ['$scope', '$http', '$routeParams', '$ti
                 url: '/api/v1/getWeather?zip=' + data
             }).then( function(response) {
                 if(which === 1) {
+     
+					
                 	//markerArray[0].setMap(null);
                     $scope.zip1City = response.data.city;
                     $scope.zip1Weather = response.data.weather;
@@ -92,7 +105,16 @@ ConsoleModule.controller('wcontroller', ['$scope', '$http', '$routeParams', '$ti
                     point = {lat:latitude[3], lon:longitude[3]};
                    
                     addMarker(point,map);
-                }        
+                }  
+               // if($scope.zip1City == city[0] && $scope.zip2City == city[1] && $scope.zip3City == city[2] && $scope.zip4City == city[3])
+              //  {
+                	
+             //   }
+              //  else {
+               // 	clearmarkers();
+                //	setMapOnAll(map);
+             //   }
+                
             });       
     }; 
 }]);
