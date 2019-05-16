@@ -1,6 +1,12 @@
 //var markerlatlng = {lat: -25.363, lng: 131.044};
 var ConsoleModule = angular.module('ConsoleModule', ['ngRoute']);
 
+   var city = [];
+    var latitude = [];
+    var longitude = [];
+    var markerArray = [];
+    var point;
+
 ConsoleModule.config(['$routeProvider', '$locationProvider','$sceDelegateProvider', '$httpProvider',
     function ($routeProvider, $locationProvider, $sceDelegateProvider, $httpProvider) {
     $routeProvider.when('/', {
@@ -9,6 +15,13 @@ ConsoleModule.config(['$routeProvider', '$locationProvider','$sceDelegateProvide
         controllerAs: 'wcontroller'
     });
 }]);
+function putPins(cities,lat,long) {
+
+    for (i = 0; i < cities.length; i++){
+    	var point = {lat: lat[i], lng: long[i]};
+        addMarker(point, map);       
+    }
+}
 
 function addMarker(location,map){
 	
@@ -17,13 +30,13 @@ function addMarker(location,map){
 	map:map
 	});
 
-//markerArray.push(marker);
+markerArray.push(marker);
 }
     function clearMarkers() {
         markerArray.setMapOnAll(null);
       }
         function setMapOnAll(map) {
-        for (var i = 0; i < markers.length; i++) {
+        for (var i = 0; i < markerArray.length; i++) {
           markerArray[i].setMap(map);
         }
       }
@@ -36,11 +49,7 @@ ConsoleModule.controller('wcontroller', ['$scope', '$http', '$routeParams', '$ti
     $scope.somemessage = "Some weather";
     $scope.zip1City = "";
     $scope.zip1Weather = "";
-    var city = [];
-    var latitude = [];
-    var longitude = [];
-    var markerArray = [];
-    var point;
+ 
     
     
 //addMarker(markerlatlng, map);
@@ -72,49 +81,39 @@ ConsoleModule.controller('wcontroller', ['$scope', '$http', '$routeParams', '$ti
                     latitude[0] = response.data.coord.lat;
                     longitude[0] = response.data.coord.lon; 
                     point = {lat:latitude[0], lon:longitude[0]};
-                    addMarker(point,map);
+                  
                   
                     
                 } else if(which === 2) {
                 	//markerArray[1].setMap(null);
                     $scope.zip2City = response.data.city;
                     $scope.zip2Weather = response.data.weather;
-                      city[1] = response.data.city;
+                    city[1] = response.data.city;
                     latitude[1] = response.data.coord.lat;
                     longitude[1] = response.data.coord.lon; 
                     point = {lat:latitude[1], lon:longitude[1]};
-                   addMarker(point,map);
+
                   
                 } else if(which === 3) {
                 	//markerArray[2].setMap(null);
                     $scope.zip3City = response.data.city;
                     $scope.zip3Weather = response.data.weather;
-                      city[2] = response.data.city;
+                    city[2] = response.data.city;
                     latitude[2] = response.data.coord.lat;
                     longitude[2] = response.data.coord.lon; 
                     point = {lat:latitude[2], lon:longitude[2]};
-                  addMarker(point,map);
+                 
                     
                 } else if(which === 4) {
                // markerArray[3].setMap(null);
                     $scope.zip4City = response.data.city;
                     $scope.zip4Weather = response.data.weather;
-                      city[3] = response.data.city;
+                    city[3] = response.data.city;
                     latitude[3] = response.data.coord.lat;
                     longitude[3] = response.data.coord.lon;
-                    point = {lat:latitude[3], lon:longitude[3]};
-                   
-                    addMarker(point,map);
-                }  
-               // if($scope.zip1City == city[0] && $scope.zip2City == city[1] && $scope.zip3City == city[2] && $scope.zip4City == city[3])
-              //  {
-                	
-             //   }
-              //  else {
-               // 	clearmarkers();
-                //	setMapOnAll(map);
-             //   }
-                
+                  
+                } 
+                 putPins(city,latitude,longitude);
             });       
     }; 
 }]);
