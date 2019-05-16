@@ -60,7 +60,7 @@
         }
         request({
       		method: 'GET',
-              url: appUrl + '/api/v1/getWeather?zip=Hamilton'
+              url: appUrl + '/api/v1/getWeather?zip=Christchurch'
           }, function(err, resp, body) {
           	if(err) {
           		assert.fail('Failed to get the response');
