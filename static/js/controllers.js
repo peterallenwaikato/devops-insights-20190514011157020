@@ -55,8 +55,8 @@ ConsoleModule.controller('wcontroller', ['$scope', '$http', '$routeParams', '$ti
                     $scope.zip1City = response.data.city;
                     $scope.zip1Weather = response.data.weather;
                     city[0] = response.data.city;
-                    latitude[0] = response.data.lat;
-                    longitude[0] = response.data.lon;                  
+                    latitude[0] = response.data.coord.lat;
+                    longitude[0] = response.data.coord.lon;                  
                    // markerArray[0].setMap(map);
                     
                 } else if(which === 2) {
@@ -64,8 +64,8 @@ ConsoleModule.controller('wcontroller', ['$scope', '$http', '$routeParams', '$ti
                     $scope.zip2City = response.data.city;
                     $scope.zip2Weather = response.data.weather;
                       city[1] = response.data.city;
-                    latitude[1] = response.data.lat;
-                    longitude[1] = response.data.lon;                   
+                    latitude[1] = response.data.coord.lat;
+                    longitude[1] = response.data.coord.lon;                   
                    // markerArray[1].setMap(null);
                   
                 } else if(which === 3) {
@@ -73,8 +73,8 @@ ConsoleModule.controller('wcontroller', ['$scope', '$http', '$routeParams', '$ti
                     $scope.zip3City = response.data.city;
                     $scope.zip3Weather = response.data.weather;
                       city[2] = response.data.city;
-                    latitude[2] = response.data.lat;
-                    longitude[2] = response.data.lon;                   
+                    latitude[2] = response.data.coord.lat;
+                    longitude[2] = response.data.coord.lon;                   
                    // markerArray[2].setMap(map);
                     
                 } else if(which === 4) {
@@ -82,8 +82,8 @@ ConsoleModule.controller('wcontroller', ['$scope', '$http', '$routeParams', '$ti
                     $scope.zip4City = response.data.city;
                     $scope.zip4Weather = response.data.weather;
                       city[3] = response.data.city;
-                    latitude[3] = response.data.lat;
-                    longitude[3] = response.data.lon;
+                    latitude[3] = response.data.coord.lat;
+                    longitude[3] = response.data.coord.lon;
                    // markerArray[3].setMap(map);
                    
                 } 
