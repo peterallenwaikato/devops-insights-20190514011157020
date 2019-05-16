@@ -29,6 +29,7 @@ ConsoleModule.controller('wcontroller', ['$scope', '$http', '$routeParams', '$ti
     var latitude = [];
     var longitude = [];
     var markerArray = [];
+    var point;
     
     
 //addMarker(markerlatlng, map);
@@ -51,46 +52,46 @@ ConsoleModule.controller('wcontroller', ['$scope', '$http', '$routeParams', '$ti
                 url: '/api/v1/getWeather?zip=' + data
             }).then( function(response) {
                 if(which === 1) {
-                	//markerArray[0].setMap(null);
+                	markerArray[0].setMap(null);
                     $scope.zip1City = response.data.city;
                     $scope.zip1Weather = response.data.weather;
                     city[0] = response.data.city;
                     latitude[0] = response.data.coord.lat;
-                    longitude[0] = response.data.coord.lon;                  
-                   // markerArray[0].setMap(map);
+                    longitude[0] = response.data.coord.lon; 
+                    point = {lat:latitude[0], lon:longitude[0]};
+                   markerArray[0].addMarker(point,map);
                     
                 } else if(which === 2) {
-                	//markerArray[1].setMap(null);
+                	markerArray[1].setMap(null);
                     $scope.zip2City = response.data.city;
                     $scope.zip2Weather = response.data.weather;
                       city[1] = response.data.city;
                     latitude[1] = response.data.coord.lat;
-                    longitude[1] = response.data.coord.lon;                   
-                   // markerArray[1].setMap(null);
+                    longitude[1] = response.data.coord.lon; 
+                    point = {lat:latitude[1], lon:longitude[1]};
+                   markerArray[1].addMarker(point,map);
                   
                 } else if(which === 3) {
-                	//markerArray[2].setMap(null);
+                	markerArray[2].setMap(null);
                     $scope.zip3City = response.data.city;
                     $scope.zip3Weather = response.data.weather;
                       city[2] = response.data.city;
                     latitude[2] = response.data.coord.lat;
-                    longitude[2] = response.data.coord.lon;                   
-                   // markerArray[2].setMap(map);
+                    longitude[2] = response.data.coord.lon; 
+                    point = {lat:latitude[2], lon:longitude[2]};
+                   markerArray[2].addMarker(point,map);
                     
                 } else if(which === 4) {
-                	//markerArray[3].setMap(null);
+                markerArray[3].setMap(null);
                     $scope.zip4City = response.data.city;
                     $scope.zip4Weather = response.data.weather;
                       city[3] = response.data.city;
                     latitude[3] = response.data.coord.lat;
                     longitude[3] = response.data.coord.lon;
-                   // markerArray[3].setMap(map);
+                    point = {lat:latitude[3], lon:longitude[3]};
+                   markerArray[3].addMarker(point,map);
                    
-                } 
-                for (i = 0; i < city.length; i++){
-    	var point = {lat: latitude[i], lng: longitude[i]};
-       addMarker(point, map);      
-       }
+                }        
             });       
     }; 
 }]);
