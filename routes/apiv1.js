@@ -10,12 +10,12 @@ var request = REQUEST.defaults( {
 var OPENWEATHERURL = "http://api.openweathermap.org/data/2.5/weather?appid=6b7b471967dd0851d0010cdecf28f829&units=metric";
 
 exports.getWeather = function(req, res) {
-	var zip = req.query.zip;
-	if( (zip === null) || (typeof(zip) === 'undefined') ) {
+	var location = req.query.location;
+	if( (location === null) || (typeof(location) === 'undefined') ) {
 		return res.status(400).send('zip missing');
 	}
 
-	var aurl = OPENWEATHERURL + '&q=' + zip + ',NZ';
+	var aurl = OPENWEATHERURL + '&q=' + location + ',NZ';
 
 	request({
 		method: 'GET',
@@ -40,13 +40,19 @@ exports.getWeather = function(req, res) {
 router.get('/getWeather', exports.getWeather);
 
 
-exports.getWeather2 = function(req, res) {
-	var zip = req.query.zip;
-	if( (zip === null) || (typeof(zip) === 'undefined') ) {
-		return res.status(400).send('zip missing');
+
+
+exports.getWeathergeo = function(req, res) {
+	var latitude = req.query.lat;
+	var longitude = req.query.lon;
+	if( (latitude === null) || (typeof(latitude) === 'undefined') ) {
+		return res.status(400).send('latitude missing');
+	}
+	else if( (longitude === null) || (typeof(longitude) === 'undefined') ) {
+		return res.status(400).send('longitude missing');
 	}
 
-	var aurl = OPENWEATHERURL + '&q=' + zip + ',NZ';
+var aurl = OPENWEATHERURL + '&lat=' + latitude + ' &lon=' + longitude;
 
 	request({
 		method: 'GET',
@@ -68,7 +74,7 @@ exports.getWeather2 = function(req, res) {
     });
 
 };
-router.get('/getWeather2', exports.getWeather2);
+router.get('/getWeathergeo', exports.getWeathergeo);
 
 
 exports.router = router;
