@@ -135,9 +135,9 @@
         }
       };
   apiv1.getWeathergeo(reqMock, resMock);
-});
-assert(resMock.status.lastCall.calledWith(400), 'Unexpected status code:' + resMock.status.lastCall.args);
 
+assert(resMock.status.lastCall.calledWith(400), 'Unexpected status code:' + resMock.status.lastCall.args);
+});
          it('with without longitude', function() {
       reqMock = {
         query: {
