@@ -208,7 +208,10 @@ assert(resMock.status.lastCall.calledWith(400), 'Unexpected status code:' + resM
         ],
         main: {
           temp: 2
-        }
+        },
+        coord:{
+        	lon: 174.7633 
+        	, lat:-36.8485}
       };
 
       var request = function( obj, callback ){
