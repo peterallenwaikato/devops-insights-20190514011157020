@@ -1,5 +1,5 @@
 
-var ConsoleModule = angular.module('ConsoleModule', ['ngRoute']);
+   var ConsoleModule = angular.module('ConsoleModule', ['ngRoute']);
 
    var city = [];
     var latitude = [];
@@ -29,7 +29,7 @@ function addPin(location,map){
 	var marker = new google.maps.Marker({
 	position:location,
 	map:map
-	});
+	})
 
 markerArray.push(marker);
 }
@@ -68,7 +68,7 @@ ConsoleModule.controller('wcontroller', ['$scope', '$http', '$routeParams', '$ti
        
             $http({
                 method: "GET",
-                url: '/api/v1/getWeather?zip=' + data
+                url: '/api/v1/getWeather?location=' + data
             }).then( function(response) {
                 if(which === 1) {               
                     $scope.zip1City = response.data.city;
@@ -110,6 +110,67 @@ ConsoleModule.controller('wcontroller', ['$scope', '$http', '$routeParams', '$ti
                   
                 } 
                  putPinsOnMap(city,latitude,longitude);
-            });       
-    }; 
+             
+
+            });  
+                 google.maps.event.addListener(map, 'click', function(event) {
+                var latitudepin = event.latLng.lat();
+                var longitudepin = event.latLng.lng();
+                 $http({
+                method: "GET",
+                url: '/api/v1/getWeathergeo?lat=' + latitudepin + '&lon=' + longitudepin
+            }).then( function(response) {
+            	var slot = response.data.city;
+                if(slot[0] !== null || slot[0] !== undefined) {               
+              
+					var index = 0;                    
+                  
+                  
+                    
+                 if((slot[0] === null) || slot[0] === undefined) {
+                        $scope.city1m = response.data.city;
+            			$scope.city1 = response.data.coord.lat + ', ' + response.data.coord.lon;
+	            		$scope.city1Weather = response.data.weather;
+						index = 0;        
+       
+                  
+
+                  
+                } else if(slot[2] === null || slot[2] === undefined) {
+  						   $scope.city1m = response.data.city;
+            			$scope.city1 = response.data.coord.lat + ', ' + response.data.coord.lon;
+	            		$scope.city1Weather = response.data.weather;
+						index = 1;  
+                    
+                 
+                    
+                 
+                     } else if((slot[3] === null) || slot[3] === undefined) {
+  
+                       $scope.city1m = response.data.city;
+            			$scope.city1 = response.data.coord.lat + ', ' + response.data.coord.lon;
+	            		$scope.city1Weather = response.data.weather;
+						index = 2;  
+                 
+                    
+                } 
+                else {
+                   $scope.city1m = response.data.city;
+            			$scope.city1 = response.data.coord.lat + ', ' + response.data.coord.lon;
+	            		$scope.city1Weather = response.data.weather;
+						index=3;  
+                  
+                } 
+                city[i]= response.data.city;
+                latitude[i] = response.data.coord.lat;
+                longitude[i] = response.data.coord.lon; 
+             
+            }
+               putPinsOnMap(city,latitude,longitude);
+    });
+});
+   
+
+
+
 }]);
