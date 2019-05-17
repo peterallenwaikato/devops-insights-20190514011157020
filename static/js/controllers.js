@@ -113,6 +113,8 @@ ConsoleModule.controller('wcontroller', ['$scope', '$http', '$routeParams', '$ti
              
 
             });  
+        };
+
                  google.maps.event.addListener(map, 'click', function(event) {
                 var latitudepin = event.latLng.lat();
                 var longitudepin = event.latLng.lng();
@@ -121,7 +123,8 @@ ConsoleModule.controller('wcontroller', ['$scope', '$http', '$routeParams', '$ti
                 url: '/api/v1/getWeathergeo?lat=' + latitudepin + '&lon=' + longitudepin
             }).then( function(response) {
             	var slot = response.data.city;
-                if(slot[0] !== null || slot[0] !== undefined) {               
+                if(slot[0] !== null || slot[0] !== undefined) 
+                {               
               
 					var index = 0;                    
                   
