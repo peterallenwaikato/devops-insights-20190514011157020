@@ -29,7 +29,7 @@ function addPin(location,map){
 	var marker = new google.maps.Marker({
 	position:location,
 	map:map
-	})
+	});
 
 markerArray.push(marker);
 }
