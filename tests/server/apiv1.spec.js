@@ -225,7 +225,8 @@ assert(resMock.status.lastCall.calledWith(400), 'Unexpected status code:' + resM
       assert(resMock.status.lastCall.calledWith(200), 'Unexpected response:' + resMock.status.lastCall.args);
       assert(resMock.send.lastCall.args[0].city === 'Auckland', 'Unexpected response:' + resMock.send.lastCall.args[0].city);
       assert(resMock.send.lastCall.args[0].weather === 'Conditions are cold and temperature is 2 C', 'Unexpected response:' + resMock.send.lastCall.args[0].weather);
-      assert(resMock.send.lastCall.args[0].coord === {lon: 174.7633 , lat:-36.8485},'Unexpected response:' + resMock.send.lastCall.args[0].coord);
+      assert(resMock.send.lastCall.args[0].coord === {lon: 174.7633},'Unexpected response:' + resMock.send.lastCall.args[0].coord.lon);
+      assert(resMock.send.lastCall.args[0].coord === {lat:-36.8485},'Unexpected response:' + resMock.send.lastCall.args[0].coord.lat);    
     });
   });
   
