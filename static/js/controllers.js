@@ -164,9 +164,9 @@ ConsoleModule.controller('wcontroller', ['$scope', '$http', '$routeParams', '$ti
 						index=3;  
                   
                 } 
-                city[i]= response.data.city;
-                latitude[i] = response.data.coord.lat;
-                longitude[i] = response.data.coord.lon; 
+                city[index]= response.data.city;
+                latitude[index] = response.data.coord.lat;
+                longitude[index] = response.data.coord.lon; 
              
             }
                putPinsOnMap(city,latitude,longitude);
