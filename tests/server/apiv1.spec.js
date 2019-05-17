@@ -123,9 +123,10 @@
             
         }
       };
-}
-      apiv1.getWeather2(reqMock, resMock);
-  	
+
+      apiv1.getWeathergeo(reqMock, resMock);
+      assert(resMock.status.lastCall.calledWith(400), 'Unexpected status code:' + resMock.status.lastCall.args);
+  	 });
 
     it('with without latitude', function() {
       reqMock = {
@@ -133,7 +134,9 @@
              lon: 174.7633
         }
       };
-  }
+  apiv1.getWeatherPos(reqMock, resMock);
+});
+assert(resMock.status.lastCall.calledWith(400), 'Unexpected status code:' + resMock.status.lastCall.args);
 
          it('with without longitude', function() {
       reqMock = {
